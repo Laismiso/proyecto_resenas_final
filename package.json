@@ -1,0 +1,24 @@
+{
+  "name": "sabor-resena",
+  "version": "1.0.0",
+  "description": "Plataforma de reseñas de restaurantes con frontend y API en Node.js.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "abrir": "node scripts/abrir.js",
+    "db:migrate": "node scripts/migrate.js",
+    "db:check": "node scripts/check-database.js",
+    "admin:password": "node scripts/restablecer-admin.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemailer": "^10.6.0",
+    "pg": "^8.16.3"
+  }
+}

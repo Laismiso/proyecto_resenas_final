@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de administración de Sabor & Reseña.">
+  <title>Panel de administración · Sabor & Reseña</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <header class="encabezado-sitio">
+    <a class="marca" href="/" aria-label="Volver al inicio">
+      <span class="icono-marca" aria-hidden="true">🍽️</span>
+      <span>Sabor & Reseña</span>
+    </a>
+
+    <button class="boton-menu" id="boton-menu-admin" type="button" aria-expanded="false" aria-controls="menu-admin">
+      <span class="solo-lectura">Abrir menú</span>
+      <span aria-hidden="true">☰</span>
+    </button>
+
+    <nav class="menu-principal" id="menu-admin" aria-label="Navegación del panel">
+      <a class="enlace-menu" href="/">Volver al inicio</a>
+      <span class="enlace-menu admin-usuario" id="admin-usuario">Comprobando sesión...</span>
+      <button class="enlace-menu admin-salir" id="boton-salir-admin" type="button">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <main class="seccion admin">
+    <div class="encabezado-seccion">
+      <div>
+        <p class="etiqueta-superior etiqueta-oscura">ADMINISTRACIÓN</p>
+        <h1>Panel de control</h1>
+      </div>
+      <p class="descripcion-seccion">Revisa las cuentas de la comunidad y modera las reseñas publicadas.</p>
+    </div>
+
+    <div class="acceso-denegado" id="acceso-denegado" hidden>
+      <h2>Acceso reservado</h2>
+      <p id="mensaje-acceso">Esta página solo está disponible para administradores.</p>
+      <a class="boton boton-principal" href="/">Volver al inicio</a>
+    </div>
+
+    <div id="panel-admin" hidden>
+      <p class="mensaje-formulario" id="mensaje-admin" aria-live="polite"></p>
+
+      <div class="admin-resumen" aria-label="Resumen de la comunidad">
+        <article class="tarjeta-resumen-admin">
+          <span class="numero-resumen" id="total-usuarios">0</span>
+          <span class="texto-resumen">Usuarios registrados</span>
+        </article>
+        <article class="tarjeta-resumen-admin">
+          <span class="numero-resumen" id="total-suspendidos">0</span>
+          <span class="texto-resumen">Cuentas suspendidas</span>
+        </article>
+        <article class="tarjeta-resumen-admin">
+          <span class="numero-resumen" id="total-resenas">0</span>
+          <span class="texto-resumen">Reseñas publicadas</span>
+        </article>
+      </div>
+
+      <div class="pestanas-admin" role="tablist" aria-label="Secciones del panel">
+        <button class="pestana-admin activa" id="pestana-usuarios" type="button" role="tab" aria-selected="true" aria-controls="vista-usuarios" data-vista="usuarios">Usuarios</button>
+        <button class="pestana-admin" id="pestana-resenas" type="button" role="tab" aria-selected="false" aria-controls="vista-resenas" data-vista="resenas">Reseñas</button>
+      </div>
+
+      <section class="vista-admin" id="vista-usuarios" role="tabpanel" aria-labelledby="pestana-usuarios">
+        <form class="controles-admin" id="formulario-buscar-usuarios" role="search">
+          <div class="campo-busqueda-admin">
+            <label for="buscar-usuarios" class="solo-lectura">Buscar usuarios</label>
+            <input id="buscar-usuarios" name="buscar" type="search" placeholder="Buscar por nombre o correo" autocomplete="off">
+          </div>
+          <button class="boton boton-principal" type="submit">Buscar</button>
+          <button class="boton boton-secundario" id="limpiar-usuarios" type="button">Limpiar</button>
+        </form>
+
+        <div class="tabla-admin-contenedor">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Registro</th>
+                <th>Reseñas</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-usuarios">
+              <tr><td colspan="7" class="celda-vacia">Cargando usuarios...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="paginacion-admin" id="paginacion-usuarios">
+          <button class="boton-tabla" type="button" data-pagina="anterior">Anterior</button>
+          <span class="info-paginacion" id="info-usuarios">Página 1</span>
+          <button class="boton-tabla" type="button" data-pagina="siguiente">Siguiente</button>
+        </div>
+
+        <p class="ayuda-admin">Suspender una cuenta cierra su sesión de inmediato. Eliminar una cuenta borra también sus reseñas.</p>
+      </section>
+
+      <section class="vista-admin" id="vista-resenas" role="tabpanel" aria-labelledby="pestana-resenas" hidden>
+        <form class="controles-admin" id="formulario-buscar-resenas" role="search">
+          <div class="campo-busqueda-admin">
+            <label for="buscar-resenas" class="solo-lectura">Buscar reseñas</label>
+            <input id="buscar-resenas" name="buscar" type="search" placeholder="Buscar por autor, restaurante o comentario" autocomplete="off">
+          </div>
+          <div class="campo-filtro-admin">
+            <label for="filtro-calificacion-resenas">Calificación</label>
+            <select id="filtro-calificacion-resenas" name="calificacion">
+              <option value="todas">Todas</option>
+              <option value="5">5 estrellas</option>
+              <option value="4">4 estrellas</option>
+              <option value="3">3 estrellas</option>
+              <option value="2">2 estrellas</option>
+              <option value="1">1 estrella</option>
+            </select>
+          </div>
+          <div class="campo-filtro-admin">
+            <label for="orden-resenas">Ordenar por</label>
+            <select id="orden-resenas" name="orden">
+              <option value="recientes">Más recientes</option>
+              <option value="antiguas">Más antiguas</option>
+              <option value="mejor">Mejor calificación</option>
+              <option value="peor">Peor calificación</option>
+            </select>
+          </div>
+          <button class="boton boton-principal" type="submit">Buscar</button>
+          <button class="boton boton-secundario" id="limpiar-resenas" type="button">Limpiar</button>
+        </form>
+
+        <div class="tabla-admin-contenedor">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>Restaurante</th>
+                <th>Autor</th>
+                <th>Calificación</th>
+                <th>Comentario</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-resenas">
+              <tr><td colspan="6" class="celda-vacia">Cargando reseñas...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="paginacion-admin" id="paginacion-resenas">
+          <button class="boton-tabla" type="button" data-pagina="anterior">Anterior</button>
+          <span class="info-paginacion" id="info-resenas">Página 1</span>
+          <button class="boton-tabla" type="button" data-pagina="siguiente">Siguiente</button>
+        </div>
+
+        <p class="ayuda-admin">Eliminar una reseña la borra definitivamente de la base de datos y de la página pública. Esta acción no se puede deshacer.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie-sitio">
+    <p>Sabor & Reseña · Panel de administración</p>
+    <p>Las suspensiones de cuentas quedan registradas en la base de datos.</p>
+  </footer>
+
+  <dialog class="dialogo-admin" id="dialogo-resena" aria-labelledby="titulo-dialogo-resena">
+    <div class="dialogo-contenido">
+      <header class="dialogo-encabezado">
+        <div>
+          <p class="etiqueta-superior etiqueta-oscura">DETALLE DE LA RESEÑA</p>
+          <h2 id="titulo-dialogo-resena">Reseña</h2>
+        </div>
+        <button class="boton-cerrar-dialogo" id="cerrar-dialogo-resena" type="button" aria-label="Cerrar detalle">×</button>
+      </header>
+
+      <dl class="detalle-resena">
+        <div>
+          <dt>Restaurante</dt>
+          <dd id="detalle-restaurante">—</dd>
+        </div>
+        <div>
+          <dt>Autor</dt>
+          <dd id="detalle-autor">—</dd>
+        </div>
+        <div>
+          <dt>Correo del autor</dt>
+          <dd id="detalle-email">—</dd>
+        </div>
+        <div>
+          <dt>Calificación</dt>
+          <dd id="detalle-calificacion">—</dd>
+        </div>
+        <div>
+          <dt>Fecha de publicación</dt>
+          <dd id="detalle-fecha">—</dd>
+        </div>
+      </dl>
+
+      <div class="detalle-comentario">
+        <h3>Comentario completo</h3>
+        <p id="detalle-comentario">—</p>
+      </div>
+
+      <div class="dialogo-acciones">
+        <button class="boton-tabla advertencia" id="detalle-boton-estado-autor" type="button">Suspender autor</button>
+        <button class="boton-tabla neutro" id="detalle-boton-ver-autor" type="button">Ver ficha del autor</button>
+        <button class="boton-tabla peligro" id="detalle-boton-moderar" type="button">Eliminar reseña</button>
+        <button class="boton-tabla neutro" id="detalle-boton-cerrar" type="button">Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

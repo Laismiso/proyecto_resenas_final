@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+sabor-backend.log
+*.zip
+.DS_Store
+Thumbs.db
+.obsidian/
+.trash/
+.vscode/
+coverage/
+tmp/

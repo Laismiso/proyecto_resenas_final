@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recupera la contraseña de tu cuenta de Sabor & Reseña.">
+  <title>Recuperar contraseña — Sabor & Reseña</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="encabezado-sitio">
+    <a class="marca" href="index.html#inicio" aria-label="Ir al inicio">
+      <span class="icono-marca" aria-hidden="true">🍽️</span>
+      <span>Sabor & Reseña</span>
+    </a>
+
+    <button class="boton-menu" id="boton-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span class="solo-lectura">Abrir menú</span>
+      <span aria-hidden="true">☰</span>
+    </button>
+
+    <nav class="menu-principal" id="menu-principal" aria-label="Navegación principal">
+      <a class="enlace-menu" href="index.html#inicio">Inicio</a>
+      <a class="enlace-menu" href="index.html#restaurantes">Restaurantes</a>
+      <a class="enlace-menu" href="index.html#sobre-nosotros">Sobre nosotros</a>
+      <a class="enlace-menu boton-inicio-sesion activo" href="index.html#inicio-sesion">Iniciar sesión</a>
+      <a class="enlace-menu boton-crear-cuenta" href="registro.html">Crear cuenta</a>
+    </nav>
+  </header>
+
+  <main class="pagina-cuenta">
+    <section class="introduccion-cuenta">
+      <p class="etiqueta-superior etiqueta-oscura">TU CUENTA</p>
+      <h1>Vuelve a entrar sin perder tus reseñas.</h1>
+      <p>Escribe el correo con el que creaste tu cuenta y te enviamos un enlace para elegir una contraseña nueva.</p>
+    </section>
+
+    <section class="tarjeta-inicio-sesion tarjeta-registro" aria-labelledby="titulo-recuperar">
+      <div class="encabezado-formulario">
+        <span class="icono-inicio-sesion" aria-hidden="true">✉️</span>
+        <h2 id="titulo-recuperar">Recuperar contraseña</h2>
+        <p>Te enviaremos un enlace de un solo uso.</p>
+      </div>
+
+      <form id="formulario-recuperar" class="formulario">
+        <div class="campo">
+          <label for="correo-recuperar">Correo electrónico</label>
+          <input id="correo-recuperar" name="correo" type="email" autocomplete="email" placeholder="tu@correo.com" required>
+        </div>
+
+        <button class="boton boton-principal boton-ancho-completo" type="submit">Enviar enlace</button>
+        <p class="mensaje-formulario" id="mensaje-recuperar" aria-live="polite"></p>
+      </form>
+
+      <p class="pie-inicio-sesion">
+        <a href="index.html#inicio-sesion" class="enlace-texto">Volver a iniciar sesión</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="pie-sitio">
+    <p>© 2026 Sabor & Reseña · Proyecto académico</p>
+  </footer>
+
+  <script src="js/recuperacion.js"></script>
+</body>
+</html>

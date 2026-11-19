@@ -1,0 +1,215 @@
+/* Estilos propios del panel de administración. Se apoyan en las variables
+   y los componentes generales de estilos.css. */
+
+[hidden] { display: none !important; }
+
+.admin { padding-top: 3rem; padding-bottom: 4rem; }
+.admin h1 { margin-top: .45rem; font-size: clamp(2rem, 4vw, 3.25rem); }
+.admin .encabezado-seccion { align-items: end; }
+
+.admin-usuario { color: var(--texto-suave); font-weight: 700; }
+.admin-salir { padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+.admin-salir:hover { color: var(--terracota-oscuro); }
+
+.acceso-denegado {
+  max-width: 560px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--papel);
+  box-shadow: var(--sombra, 0 18px 45px rgba(25, 59, 59, .08));
+  text-align: center;
+}
+.acceso-denegado h2 { margin-bottom: .6rem; }
+.acceso-denegado p { margin-bottom: 1.2rem; color: var(--texto-suave); }
+
+.admin-resumen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+.tarjeta-resumen-admin {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: linear-gradient(135deg, #ffffff, #f3f7f2);
+  box-shadow: 0 10px 30px rgba(25, 59, 59, .06);
+}
+.numero-resumen { color: var(--tinta); font-family: Georgia, "Times New Roman", serif; font-size: 2rem; line-height: 1; }
+.texto-resumen { color: var(--texto-suave); font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+
+.pestanas-admin { display: flex; gap: .4rem; margin-bottom: 1rem; border-bottom: 1px solid var(--linea); }
+.pestana-admin {
+  padding: .7rem 1.1rem;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--texto-suave);
+  cursor: pointer;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 700;
+}
+.pestana-admin:hover { color: var(--terracota-oscuro); }
+.pestana-admin.activa { border-bottom-color: var(--terracota); color: var(--terracota-oscuro); }
+
+.tabla-admin-contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--papel);
+  box-shadow: 0 10px 30px rgba(25, 59, 59, .05);
+}
+
+.controles-admin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: .6rem;
+  margin-bottom: 1rem;
+}
+.campo-busqueda-admin { flex: 1 1 260px; }
+.campo-busqueda-admin input {
+  width: 100%;
+  padding: .68rem .8rem;
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--tinta);
+  font: inherit;
+  font-size: .88rem;
+}
+.campo-busqueda-admin input:focus,
+.campo-filtro-admin select:focus { outline: 2px solid var(--terracota); outline-offset: 1px; }
+.campo-filtro-admin { display: flex; flex-direction: column; gap: .3rem; }
+.campo-filtro-admin label { color: var(--texto-suave); font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.campo-filtro-admin select {
+  padding: .68rem .8rem;
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--tinta);
+  font: inherit;
+  font-size: .88rem;
+}
+.controles-admin .boton { padding: .68rem 1rem; }
+
+.paginacion-admin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  margin-top: .9rem;
+}
+.paginacion-admin .boton-tabla { border-color: var(--linea); background: #fff; color: var(--tinta); }
+.paginacion-admin .boton-tabla:hover:not(:disabled) { background: #f3f7f2; }
+.paginacion-admin .boton-tabla:disabled { opacity: .45; cursor: not-allowed; }
+.info-paginacion { color: var(--texto-suave); font-size: .8rem; text-align: center; }
+
+@media (max-width: 560px) {
+  .controles-admin { align-items: stretch; }
+  .controles-admin .boton,
+  .campo-filtro-admin { width: 100%; }
+}
+.tabla-admin { width: 100%; min-width: 820px; border-collapse: collapse; font-size: .84rem; }
+.tabla-admin th,
+.tabla-admin td { padding: .75rem .8rem; border-bottom: 1px solid var(--linea); text-align: left; vertical-align: top; }
+.tabla-admin th { background: #f3f7f2; color: var(--tinta); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }
+.tabla-admin tbody tr:last-child td { border-bottom: 0; }
+.tabla-admin tbody tr:hover { background: #fbf9f5; }
+
+.nombre-en-tabla { font-weight: 700; color: var(--tinta); }
+.autor-en-tabla { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; }
+.comentario-tabla { max-width: 380px; min-width: 220px; white-space: normal; overflow-wrap: anywhere; }
+.estrellas-tabla { color: #9c6b1a; white-space: nowrap; letter-spacing: .04em; }
+.acciones-tabla { white-space: nowrap; }
+.celda-vacia { padding: 1.6rem !important; color: var(--texto-suave); text-align: center !important; }
+
+.etiqueta-estado {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+.etiqueta-estado.activo { background: #e4f2e9; color: #24633f; }
+.etiqueta-estado.suspendido { background: #f8e4da; color: #9a3c25; }
+.etiqueta-estado.protegido { background: #e8edf5; color: #405a7a; }
+
+.boton-tabla {
+  padding: .32rem .6rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 700;
+}
+.boton-tabla + .boton-tabla { margin-left: .35rem; }
+.boton-tabla.advertencia { border-color: #e6c38e; background: #fdf4e3; color: #8a5a10; }
+.boton-tabla.advertencia:hover { background: #f8e8c9; }
+.boton-tabla.exito { border-color: #b9d8c5; background: #e9f5ee; color: #24633f; }
+.boton-tabla.exito:hover { background: #d9eddf; }
+.boton-tabla.peligro { border-color: #e8c0b8; background: #fbecea; color: #9a3c25; }
+.boton-tabla.peligro:hover { background: #f6dcd7; }
+.boton-tabla.neutro { border-color: var(--linea); background: #fff; color: var(--tinta); }
+.boton-tabla.neutro:hover { background: #f3f7f2; }
+
+/* Ventana de detalle de una reseña. Se abre con <dialog> para que el
+   navegador gestione el foco y el cierre con Escape. */
+.dialogo-admin {
+  width: min(680px, calc(100% - 2rem));
+  max-height: calc(100vh - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--linea);
+  border-radius: 18px;
+  background: var(--papel);
+  color: var(--tinta);
+  box-shadow: 0 30px 90px rgba(25, 59, 59, .25);
+}
+.dialogo-admin::backdrop { background: rgba(25, 59, 59, .45); }
+.dialogo-contenido { max-height: calc(100vh - 2rem); overflow-y: auto; padding: 1.4rem 1.5rem 1.5rem; }
+.dialogo-encabezado { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; }
+.dialogo-encabezado h2 { margin: .2rem 0 0; font-size: 1.6rem; }
+.boton-cerrar-dialogo {
+  padding: .1rem .35rem;
+  border: 0;
+  background: transparent;
+  color: var(--texto-suave);
+  cursor: pointer;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.boton-cerrar-dialogo:hover { color: var(--terracota-oscuro); }
+.detalle-resena { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem 1.2rem; margin: 0 0 1.2rem; }
+.detalle-resena dt { color: var(--texto-suave); font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.detalle-resena dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.detalle-comentario { padding: 1rem; border: 1px solid var(--linea); border-radius: 12px; background: #fbf9f5; }
+.detalle-comentario h3 { margin: 0 0 .45rem; color: var(--texto-suave); font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; }
+.detalle-comentario p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.dialogo-acciones { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
+.dialogo-acciones .boton-tabla { padding: .5rem .8rem; font-size: .78rem; }
+
+.ayuda-admin { margin-top: .7rem; color: var(--texto-suave); font-size: .78rem; }
+.mensaje-formulario.aviso-error { color: #9a3c25; }
+
+@media (max-width: 900px) {
+  .admin-resumen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin .encabezado-seccion { align-items: start; flex-direction: column; gap: .8rem; }
+}
+
+@media (max-width: 560px) {
+  .admin-resumen { grid-template-columns: 1fr; }
+  .admin-usuario { display: none; }
+  .detalle-resena { grid-template-columns: 1fr; }
+  .dialogo-contenido { padding: 1.1rem; }
+}
